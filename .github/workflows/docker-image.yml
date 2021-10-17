@@ -23,8 +23,8 @@ jobs:
 
       - name: docker login
         env:
-          DOCKER_USER: ${{sercrets.DOCKER_HUB_ID}}
-          DOCKER_PWD: ${{sercrets.DOCKER_HUB_PWD}}
+          DOCKER_USER: ${{secrets.DOCKER_HUB_ID}}
+          DOCKER_PWD: ${{secrets.DOCKER_HUB_PWD}}
         run: |
           docker login -u $DOCKER_ID -p $DOCKER_PWD
 
