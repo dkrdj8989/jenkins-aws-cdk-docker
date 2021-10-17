@@ -2,7 +2,7 @@ name: Docker Image of jenkins with aws-cdk
 
 on:
   push:
-    branches: [ master ]
+    branches: "master"
 
 jobs:
 
@@ -11,7 +11,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # fetch code from git repo
       - name: checkout code
       - uses: actions/checkout@v2
 
