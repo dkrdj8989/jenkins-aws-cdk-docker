@@ -11,29 +11,29 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    # fetch code from git repo
-    - name: checkout code
-    - uses: actions/checkout@v2
-    
-    - name: install buildx
-      id: buildx
-      uses: crazy-max/ghaction-docker-buildx@v3
-      with:
-        buildx-version: latest
-        qemu-version: latest
-        
-    - name: docker login
-    - env:
-        DOCKER_USER: ${{sercrets.DOCKER_HUB_ID}}
-        DOCKER_PWD: ${{sercrets.DOCKER_HUB_PWD}}
-    - run: |
-        docker login -u $DOCKER_ID -p $DOCKER_PWD
-        
-    - name: Build and push
-      uses: docker/build-push-action@v2
-      with:
-        context: .
-        file: ./master/Dockerfile
-        platforms: linux/386,linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64,linux/ppc64le,linux/s390x
-        push: true
-        tags: dkrdj8989/jenkins-lts-with-aws-cdk:lts
+      # fetch code from git repo
+      - name: checkout code
+      - uses: actions/checkout@v2
+
+      - name: install buildx
+        id: buildx
+        uses: crazy-max/ghaction-docker-buildx@v3
+        with:
+          buildx-version: latest
+          qemu-version: latest
+
+      - name: docker login
+      - env:
+          DOCKER_USER: ${{sercrets.DOCKER_HUB_ID}}
+          DOCKER_PWD: ${{sercrets.DOCKER_HUB_PWD}}
+      - run: |
+          docker login -u $DOCKER_ID -p $DOCKER_PWD
+
+      - name: Build and push
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: ./master/Dockerfile
+          platforms: linux/386,linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64,linux/ppc64le,linux/s390x
+          push: true
+          tags: dkrdj8989/jenkins-lts-with-aws-cdk:lts
