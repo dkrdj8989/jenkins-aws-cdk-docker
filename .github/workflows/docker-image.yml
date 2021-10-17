@@ -22,10 +22,10 @@ jobs:
           qemu-version: latest
 
       - name: docker login
-      - env:
+        env:
           DOCKER_USER: ${{sercrets.DOCKER_HUB_ID}}
           DOCKER_PWD: ${{sercrets.DOCKER_HUB_PWD}}
-      - run: |
+        run: |
           docker login -u $DOCKER_ID -p $DOCKER_PWD
 
       - name: Build and push
