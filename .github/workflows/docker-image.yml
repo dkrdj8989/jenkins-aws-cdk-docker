@@ -11,9 +11,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # fetch code from git repo
       - name: checkout code
-      - uses: actions/checkout@v2
+        uses: actions/checkout@v2
 
       - name: install buildx
         id: buildx
@@ -23,10 +22,10 @@ jobs:
           qemu-version: latest
 
       - name: docker login
-      - env:
+        env:
           DOCKER_USER: ${{sercrets.DOCKER_HUB_ID}}
           DOCKER_PWD: ${{sercrets.DOCKER_HUB_PWD}}
-      - run: |
+        run: |
           docker login -u $DOCKER_ID -p $DOCKER_PWD
 
       - name: Build and push
