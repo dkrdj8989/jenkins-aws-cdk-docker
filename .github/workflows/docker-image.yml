@@ -26,7 +26,7 @@ jobs:
           DOCKER_USER: ${{secrets.DOCKER_HUB_ID}}
           DOCKER_PWD: ${{secrets.DOCKER_HUB_PWD}}
         run: |
-          docker login -u $DOCKER_ID -p $DOCKER_PWD
+          echo "${{ secrets.$DOCKER_PWD }}" | docker login -u "${{ secrets.$DOCKER_ID }}" --password-stdin
 
       - name: Build and push
         uses: docker/build-push-action@v2
